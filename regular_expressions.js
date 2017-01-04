@@ -1,7 +1,7 @@
 "use strict"
 // Determine whether a string contains a nomor KTP
 function has_ktp(string) {
-
+  return /\d{3}.\d{2}.\d{4}/.test(string)
 }
 
 console.log("has_ktp returns true if it has what looks like a nomor KTP")
