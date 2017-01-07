@@ -1,6 +1,10 @@
 "use strict"
 // Determine whether a string contains a nomor KTP
 function has_ktp(string) {
+	if(string.match(/\d{3}(-)\d{2}(-)\d{4}/gi)){
+		return true;
+	}
+	return false;
 
 }
 
@@ -12,7 +16,11 @@ console.log(has_ktp("please confirm your identity: XXX-XX-1422") == false)
 
 // Return the Social Security number from a string.
 function grab_ktp(string) {
-
+	let data='';
+	if(data = string.match(/\d{3}(-)\d{2}(-)\d{4}/gi)){
+		return data;
+	}
+	return null;
 }
 
 console.log("grab_ktp returns an nomor KTP if the string has an nomor KTP")
@@ -23,7 +31,11 @@ console.log(grab_ktp("please confirm your identity: XXX-XX-1422") == null)
 
 // Return all of the Social Security numbers from a string.
 function grab_all_nomor_ktp(string) {
-
+	let data='';
+	if(data = string.match(/\d{3}(-)\d{2}(-)\d{4}/gi)){
+		return data;
+	}
+	return [];
 }
 
 console.log("grab_all_nomor_ktp returns all nomor KTP if the string has any nomor KTP")
@@ -39,6 +51,10 @@ console.log(grab_all_nomor_ktp("please confirm your identity: XXX-XX-1422"))
 // Obfuscate all of the nomor KTP in a string. Example: XXX-XX-4430.
 function hide_all_nomor_ktp(string) {
 
+	if(string.match(/\d{3}(-)\d{2}(-)\d{4}/gi)){
+		return string.replace(/\d{3}(-)\d{2}/g,'XXX-XX')
+	}
+	return string;
 }
 
 console.log("hide_all_nomor_ktp obfuscates any nomor KTP in the string")
