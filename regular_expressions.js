@@ -70,7 +70,15 @@ console.log(hide_all_nomor_ktp(string) == string)
 // Ensure all of the Social Security numbers use dashes for delimiters.
 // Example: 480.01.4430 and 480014430 would both be 480-01-4430.
 function format_nomor(string) {
+    let reg1 = /(\d{3})(\d{2})(\d{4})/g;
+    let reg2 = /(\d{3}).(\d{2}).(\d{4})/g;
+    let num1 = string.match(reg1);
+    let num2 = string.match(reg2);
 
+    if(string.match(/\d{3}.?-?\d{2}.?-?\d{4}/gi)){
+        return `${num1.join('').replace(reg1, "$1-$2-$3")}, ${num2.join(', ').replace(/[.]/g, '-')}`;
+    }
+    return typeof string;
 }
 
 console.log("format_nomor finds and reformat any nomor KTP in the string")
