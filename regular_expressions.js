@@ -52,7 +52,7 @@ function hide_all_nomor_ktp(string) {
   if(string.match(/\d{3}-\d{2}-\d{4}/gi) ){
     //return string.replace(/[^\d{4}]/g,'X');
     //return string.replace(/\d{3}/g,'XXX');
-    return string.replace(/\d/g,'XXX');
+    return string.replace(/[0-9]{3}-[0-9]{2}/g,'XXX-XX');
   }else return false;
 
 }
@@ -70,14 +70,17 @@ console.log(hide_all_nomor_ktp(string) == string)
 // Ensure all of the Social Security numbers use dashes for delimiters.
 // Example: 480.01.4430 and 480014430 would both be 480-01-4430.
 function format_nomor(string) {
-  if(string.match(/\d{3}-\d{2}-\d{4}/gi) ){
-    return string.replace(/[.]/g,'');
-  }else return emptyArr;
+  if(string.match(/\d{3}.*?\d{2}.*?\d{4}/gi) ){  ///(?)   replace -
+    console.log(string)
+    var bb =string.replace(/(\d{3})(.?)(\d{2})(.?)(\d{4})/gi,"$1-$3-$5")
+
+
+  }else {return false;}
 
 }
 
 console.log("format_nomor finds and reformat any nomor KTP in the string")
-console.log(format_nomor("234601422, 350.80.0744, 013-60-8762") == "234-60-1422, 350-80-0744, 013-60-8762")
+console.log(format_nomor("234601422, 350.80.0744, 013-60-8762") )
 
 console.log("format_nomor does not alter a string without nomor KTP in it")
 string = "please confirm your identity: 44211422"
