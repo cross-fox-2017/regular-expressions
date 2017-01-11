@@ -74,7 +74,7 @@ function format_nomor(string) {
     console.log(string)
     var bb =string.replace(/(\d{3})(.?)(\d{2})(.?)(\d{4})/gi,"$1-$3-$5")
 
-
+    return bb;
   }else {return false;}
 
 }
